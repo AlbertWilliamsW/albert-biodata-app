@@ -36,4 +36,4 @@ jobs:
       - name: Deploy to GitHub Pages
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npx angular-cli-ghpages --dir=dist/albert-bio-data-app/browser --silent=false
+        run: npx angular-cli-ghpages --dir=dist/albert-bio-data-app/browser
