@@ -30,4 +30,5 @@ jobs:
           branch: gh-pages
           folder: dist/albert-bio-data-app/browser
           force: true
+          ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
