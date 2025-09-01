@@ -30,4 +30,4 @@ jobs:
 
       # 5️⃣ Deploy using angular-cli-ghpages
       - name: Deploy to GitHub Pages
-        run: npx angular-cli-ghpages --dir=dist/albert-bio-data-app/browser --force
+        run: npx angular-cli-ghpages --dir=dist/albert-bio-data-app/browser
