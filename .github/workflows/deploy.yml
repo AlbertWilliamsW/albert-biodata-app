@@ -3,15 +3,15 @@ name: Auto Deploy Angular App to GitHub Pages
 on:
   push:
     branches:
-      - main  # triggers deployment on every push to main
+      - main  # Trigger deployment on push to main branch
 
 jobs:
-  build-deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
       # 1️⃣ Checkout repository
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v3
 
       # 2️⃣ Setup Node.js
@@ -28,11 +28,12 @@ jobs:
       - name: Build Angular app
         run: npm run build -- --configuration production --base-href "https://AlbertWilliamsW.github.io/albert-bio-data-app/"
 
-      # 5️⃣ List dist folder (for debugging, optional)
+      # 5️⃣ Debug: list build folder contents
       - name: List build folder contents
-        run: ls -R dist/albert-bio-data-app
+        run: ls -R dist/albert-bio-data-app/browser
 
+      # 6️⃣ Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npx angular-cli-ghpages --dir=dist/albert-bio-data-app/browser
+        run: npx angular-cli-ghpages --dir=dist/albert-bio-data-app/browser --silent=false
