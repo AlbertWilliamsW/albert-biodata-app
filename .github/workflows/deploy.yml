@@ -32,6 +32,7 @@ jobs:
       - name: List build folder contents
         run: ls -R dist/albert-bio-data-app
 
-      # 6️⃣ Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
-        run: npx angular-cli-ghpages --dir=dist/albert-bio-data-app/browser --silent=false
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx angular-cli-ghpages --dir=dist/albert-bio-data-app/browser
