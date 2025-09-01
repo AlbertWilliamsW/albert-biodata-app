@@ -11,7 +11,7 @@ jobs:
 
     steps:
       # 1️⃣ Checkout repository
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v3
 
       # 2️⃣ Setup Node.js
@@ -28,6 +28,10 @@ jobs:
       - name: Build Angular app
         run: npm run build -- --configuration production --base-href "https://AlbertWilliamsW.github.io/albert-bio-data-app/"
 
-      # 5️⃣ Deploy using angular-cli-ghpages
+      # 5️⃣ List dist folder (for debugging, optional)
+      - name: List build folder contents
+        run: ls -R dist/albert-bio-data-app
+
+      # 6️⃣ Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         run: npx angular-cli-ghpages --dir=dist/albert-bio-data-app/browser
