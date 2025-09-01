@@ -1,4 +1,4 @@
-name: Deploy Angular App to GitHub Pages
+name: Auto Deploy Angular App to GitHub Pages
 
 on:
   push:
@@ -28,4 +28,5 @@ jobs:
         with:
           branch: gh-pages
           folder: dist/albert-bio-data-app/browser
+          clean: true
 
