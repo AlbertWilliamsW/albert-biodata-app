@@ -10,36 +10,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Checkout repository
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      # 2️⃣ Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      # 3️⃣ Install dependencies
       - name: Install dependencies
         run: npm install
 
-      # 4️⃣ Build Angular app
       - name: Build Angular app
         run: npm run build -- --configuration production --base-href "https://AlbertWilliamsW.github.io/albert-bio-data-app/"
 
-      # 5️⃣ Delete remote gh-pages branch if it exists
-      - name: Delete remote gh-pages branch
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          git config --global user.email "action@github.com"
-          git config --global user.name "GitHub Action"
-          git ls-remote --exit-code --heads https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }} gh-pages && \
-          git push https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }} --delete gh-pages || echo "gh-pages branch does not exist"
-
-      # 6️⃣ Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npx angular-cli-ghpages --dir=dist/albert-bio-data-app/browser
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages                # target branch
+          folder: dist/albert-bio-data-app/browser   # Angular build output
+          clean: true                     # delete previous contents
