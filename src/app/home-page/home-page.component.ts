@@ -1,4 +1,4 @@
-import { Component, NgZone, ViewChild, ViewContainerRef } from '@angular/core';
+import { ChangeDetectorRef, Component, NgZone, ViewChild, ViewContainerRef } from '@angular/core';
 import { SkillsPageComponent } from '../skills-page/skills-page.component';
 
 @Component({
@@ -10,22 +10,20 @@ import { SkillsPageComponent } from '../skills-page/skills-page.component';
 })
 export class HomePageComponent {
 
-  @ViewChild('skillsDynamicContainer', {read: ViewContainerRef, static: false})
+  @ViewChild('skillsDynamicContainer', {read: ViewContainerRef})
   container!: ViewContainerRef;
 
-  constructor(private zone: NgZone) {}
+  constructor(private cdr: ChangeDetectorRef) {}
 
-  loadComponent() {
+  ngAfterViewInit() {
     this.container.clear();
     const skillsPageComponent = this.container.createComponent(SkillsPageComponent);
     skillsPageComponent.instance.skills = ["Angular", 'Typescript', 'Javascript', 'bit bucket'];
     console.log(skillsPageComponent.instance);
-    skillsPageComponent.instance.buttonClickedEvent.subscribe((event) => {
-      this.zone.run(() => {
+    skillsPageComponent?.instance?.buttonClickedEvent?.subscribe((event) => {
       console.log("inside parent subscribe", event);
       alert(event);
     });
-    skillsPageComponent.changeDetectorRef.detectChanges();
-    })
+    this.cdr.detectChanges();
   }
 }

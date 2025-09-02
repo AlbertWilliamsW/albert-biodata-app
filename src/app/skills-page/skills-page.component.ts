@@ -9,8 +9,9 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class SkillsPageComponent {
   skills: string[] = [];
-  @Output() buttonClickedEvent = new EventEmitter<string>();  
+  @Output() buttonClickedEvent = new EventEmitter();  
   onButtonClick () {
+    console.log("inside onButtonClick")
     this.buttonClickedEvent.emit('Button Clicked');
   }
 }
