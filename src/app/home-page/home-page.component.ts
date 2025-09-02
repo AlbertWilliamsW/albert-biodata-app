@@ -1,4 +1,4 @@
-import { Component, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, NgZone, ViewChild, ViewContainerRef } from '@angular/core';
 import { SkillsPageComponent } from '../skills-page/skills-page.component';
 
 @Component({
@@ -13,15 +13,17 @@ export class HomePageComponent {
   @ViewChild('skillsDynamicContainer', {read: ViewContainerRef})
   container!: ViewContainerRef;
 
-  // constructor(private snackbar: MatSnackbar)
+  constructor(private zone: NgZone) {}
 
   ngAfterViewInit() {
     this.container.clear();
     const skillsPageComponent = this.container.createComponent(SkillsPageComponent);
     skillsPageComponent.instance.skills = ["Angular", 'Typescript', 'Javascript'];
     skillsPageComponent.instance.buttonClickedEvent.subscribe((event) => {
-      console.log("inside parent subscribe");
+      this.zone.run(() => {
+      console.log("inside parent subscribe", event);
       alert(event);
+    });
     })
   }
 }
