@@ -1,7 +1,15 @@
-<p>skills-page works!</p>
+<!-- <p>skills-page works!</p>
 @for (item of skills; track $index) {
     <li>{{item}}</li>
 } @empty {
     <li>No skills found.</li>
   }
+<button (click)="onButtonClick()">button</button> -->
+
+
+<p>skills-page works!</p>
+<ul>
+  <li *ngFor="let item of skills; let i = index">{{ item }}</li>
+  <li *ngIf="skills.length === 0">No skills found.</li>
+</ul>
 <button (click)="onButtonClick()">button</button>
