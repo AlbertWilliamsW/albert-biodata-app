@@ -18,7 +18,7 @@ export class HomePageComponent {
   ngAfterViewInit() {
     this.container.clear();
     const skillsPageComponent = this.container.createComponent(SkillsPageComponent);
-    skillsPageComponent.instance.skills = ["Angular", 'Typescript', 'Javascript'];
+    skillsPageComponent.instance.skills = ["Angular", 'Typescript', 'Javascript', 'bit bucket'];
     console.log(skillsPageComponent.instance);
     skillsPageComponent.instance.buttonClickedEvent.subscribe((event) => {
       this.zone.run(() => {
