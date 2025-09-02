@@ -15,7 +15,7 @@ export class HomePageComponent {
 
   constructor(private zone: NgZone) {}
 
-  ngAfterViewInit() {
+  loadComponent() {
     this.container.clear();
     const skillsPageComponent = this.container.createComponent(SkillsPageComponent);
     skillsPageComponent.instance.skills = ["Angular", 'Typescript', 'Javascript', 'bit bucket'];
