@@ -13,11 +13,14 @@ export class HomePageComponent {
   @ViewChild('skillsDynamicContainer', {read: ViewContainerRef})
   container!: ViewContainerRef;
 
+  // constructor(private snackbar: MatSnackbar)
+
   ngAfterViewInit() {
     this.container.clear();
     const skillsPageComponent = this.container.createComponent(SkillsPageComponent);
     skillsPageComponent.instance.skills = ["Angular", 'Typescript', 'Javascript'];
     skillsPageComponent.instance.buttonClickedEvent.subscribe((event) => {
+      console.log("inside parent subscribe");
       alert(event);
     })
   }
