@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ViewContainerRef } from '@angular/core';
+import { SkillsPageComponent } from '../skills-page/skills-page.component';
 
 @Component({
   selector: 'app-home-page',
@@ -9,4 +10,12 @@ import { Component } from '@angular/core';
 })
 export class HomePageComponent {
 
+  @ViewChild('skillsDynamicContainer', {read: ViewContainerRef})
+  container!: ViewContainerRef;
+
+  ngAfterViewInit() {
+    this.container.clear();
+    const skillsPageComponent = this.container.createComponent(SkillsPageComponent);
+    skillsPageComponent.instance.skills = ["Angular", 'Typescript', 'Javascript'];
+  }
 }
