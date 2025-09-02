@@ -1,12 +1,11 @@
 import { ChangeDetectorRef, Component, NgZone, ViewChild, ViewContainerRef } from '@angular/core';
 import { SkillsPageComponent } from '../skills-page/skills-page.component';
-import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  imports: [BrowserModule, CommonModule],
+  imports: [],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss'
 })
