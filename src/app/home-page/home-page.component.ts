@@ -10,7 +10,7 @@ import { SkillsPageComponent } from '../skills-page/skills-page.component';
 })
 export class HomePageComponent {
 
-  @ViewChild('skillsDynamicContainer', {read: ViewContainerRef})
+  @ViewChild('skillsDynamicContainer', {read: ViewContainerRef, static: false})
   container!: ViewContainerRef;
 
   constructor(private zone: NgZone) {}
