@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, NgZone, Output } from '@angular/core';
 
 @Component({
   selector: 'app-skills-page',
@@ -9,9 +9,13 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class SkillsPageComponent {
   skills: string[] = [];
-  @Output() buttonClickedEvent = new EventEmitter();  
+  @Output() buttonClickedEvent = new EventEmitter();
+  
+  constructor(private zone: NgZone) {}
   onButtonClick () {
     console.log("inside onButtonClick")
-    this.buttonClickedEvent.emit('Button Clicked');
+    this.zone.run(() => {
+      this.buttonClickedEvent.emit('Child button clicked');
+    });
   }
 }
