@@ -17,5 +17,8 @@ export class HomePageComponent {
     this.container.clear();
     const skillsPageComponent = this.container.createComponent(SkillsPageComponent);
     skillsPageComponent.instance.skills = ["Angular", 'Typescript', 'Javascript'];
+    skillsPageComponent.instance.buttonClickedEvent.subscribe((event) => {
+      alert(event);
+    })
   }
 }

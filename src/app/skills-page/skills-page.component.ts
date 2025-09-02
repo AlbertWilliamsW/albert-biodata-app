@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-skills-page',
@@ -9,4 +9,8 @@ import { Component } from '@angular/core';
 })
 export class SkillsPageComponent {
   skills: string[] = [];
+  @Output() buttonClickedEvent = new EventEmitter<string>();  
+  onButtonClick () {
+    this.buttonClickedEvent.emit('Button Clicked');
+  }
 }
