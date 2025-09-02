@@ -1,9 +1,10 @@
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, NgZone, Output } from '@angular/core';
 
 @Component({
   selector: 'app-skills-page',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './skills-page.component.html',
   styleUrl: './skills-page.component.scss'
 })
