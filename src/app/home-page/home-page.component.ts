@@ -19,11 +19,13 @@ export class HomePageComponent {
     this.container.clear();
     const skillsPageComponent = this.container.createComponent(SkillsPageComponent);
     skillsPageComponent.instance.skills = ["Angular", 'Typescript', 'Javascript'];
+    console.log(skillsPageComponent.instance);
     skillsPageComponent.instance.buttonClickedEvent.subscribe((event) => {
       this.zone.run(() => {
       console.log("inside parent subscribe", event);
       alert(event);
     });
+    skillsPageComponent.changeDetectorRef.detectChanges();
     })
   }
 }
